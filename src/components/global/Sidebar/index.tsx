@@ -1,21 +1,20 @@
-'use client';
-
-import { usePaths } from '@/hooks/user-nav';
-import React from 'react';
+'use client'
+import { usePaths } from '@/hooks/user-nav'
 import { LogoSmall } from '@/svgs/logo-small'
-import Items from './Items'
+import React from 'react'
+import Items from './items'
 import { Separator } from '@/components/ui/separator'
 import ClerkAuthState from '../clerk-auth-state'
 import { HelpDuoToneWhite } from '@/icons'
-// import { SubscriptionPlan } from '../subscription-plan'
-// import UpgradeCard from './upgrade'
+import  SubscriptionPlan  from '../subscription-plan'
+import UpgradeCard from './upgrade'
 
 type Props = {
-  slug: string;
-};
+  slug: string
+}
 
-const Index = ({ slug }: Props) => {
-  const { page } = usePaths();
+const Sidebar = ({ slug }: Props) => {
+  const { page } = usePaths()
 
   return (
     <div
@@ -49,7 +48,7 @@ const Index = ({ slug }: Props) => {
        backdrop--blur__safari 
        backdrop-blur-3xl"
       >
-         <div className="flex gap-x-2 items-center p-5 justify-center">
+        <div className="flex gap-x-2 items-center p-5 justify-center">
           <LogoSmall />
         </div>
         <div className="flex flex-col py-3">
@@ -58,7 +57,7 @@ const Index = ({ slug }: Props) => {
             slug={slug}
           />
         </div>
-         <div className="px-16">
+        <div className="px-16">
           <Separator
             orientation="horizontal"
             className="bg-[#333336]"
@@ -74,17 +73,14 @@ const Index = ({ slug }: Props) => {
             <p className="text-[#9B9CA0]">Help</p>
           </div>
         </div>
-        {/* <SubscriptionPlan type="FREE">
+        {/* <SubscriptionPlan type="FREE"> */}
           <div className="flex-1 flex flex-col justify-end">
             <UpgradeCard />
           </div>
-        </SubscriptionPlan>  */}
-      </div> 
+        {/* </SubscriptionPlan> */}
+      </div>
     </div>
   )
 }
 
-export default Index
-
-
-
+export default Sidebar
