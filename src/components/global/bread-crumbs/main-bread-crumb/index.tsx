@@ -16,7 +16,7 @@ const MainBreadCrumb = ({ page, slug }: Props) => {
             <h2 className="capitalize text-4xl font-medium">{slug}!</h2>
           </div>
         </div>
-      )}
+      )} 
       <span className="radial--gradient inline-flex py-5 lg:py-10 pr-16 gap-x-2 items-center">
         {PAGE_ICON[page.toUpperCase()]}
         <h2 className="font-semibold text-3xl capitalize">{page}</h2>

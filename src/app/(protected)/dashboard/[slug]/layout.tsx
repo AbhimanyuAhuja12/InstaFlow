@@ -1,7 +1,8 @@
 
 import React from 'react'
 import  Sidebar  from '@/components/global/Sidebar'
-import Navbar  from '@/components/global/Navbar'
+import InfoBar  from '@/components/global/infobar'
+import { useParams } from 'next/navigation'
 
 type Props = {
     children : React.ReactNode
@@ -20,7 +21,10 @@ const layout = ({children,params}: Props) => {
 
    {/* Navbar */}
 
-   <Navbar></Navbar>
+   <div className="lg : ml-[250px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
+    <InfoBar slug={params.slug} />
+    {children}
+   </div>
 
     </div>
   )
