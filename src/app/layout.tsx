@@ -5,14 +5,13 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "sonner";
 import ReactQueryProvider from "@/providers/react-query-provider";
-import ReduxProvider from "@/providers/react-query-provider"
-
+import ReduxProvider from "@/providers/redux-provider"; // Fixed import
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "InstaFlow",
-  description: "Automate Dms and comments in Instagram",
+  description: "Automate DMs and comments on Instagram",
 };
 
 export default function RootLayout({
@@ -24,13 +23,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-          {/* Add the favicon */}
-          <link rel="icon" type="image/webp" href="../../public/favicon.webp" />
+          {/* Corrected favicon path */}
+          <link rel="icon" type="image/webp" href="/favicon.webp" />
         </head>
-        <body
-          suppressHydrationWarning
-          className={jakarta.className}
-        >
+        <body suppressHydrationWarning className={jakarta.className}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -38,9 +34,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <ReduxProvider>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+              <ReactQueryProvider>{children}</ReactQueryProvider>
             </ReduxProvider>
-
             <Toaster />
           </ThemeProvider>
         </body>

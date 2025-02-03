@@ -2,9 +2,10 @@
 
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { createUser, findUser } from "./queries"
+import { createUser, findUser , updateSubscription } from "./queries"
 import { refreshToken } from "@/lib/fetch"
-import { updateIntegrations } from "../integrations/queries"
+import { updateIntegration } from "../integrations/queries"
+import { Divide } from "lucide-react"
 
 
 //helper function
@@ -83,3 +84,23 @@ export const onUserInfo = async ()=>{
         return { status : 500}
     }
 }
+
+export const onSubscribe = async (session_id: string) => {
+    const user = await onCurrentUser()
+    try {
+      const session = await stripe.checkout.sessions.retrieve(session_id)
+      if (session) {
+        const subscribed = await updateSubscription(user.id, {
+          customerId: session.customer as string,
+          plan: 'PRO',
+        })
+  
+        if (subscribed) return { status: 200 }
+        return { status: 401 }
+      }
+      return { status: 404 }
+    } catch (error) {
+      return { status: 500 }
+    }
+  }
+
